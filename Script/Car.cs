@@ -5,31 +5,49 @@ public class Car : MonoBehaviour {
 	public float speed;
 	public float speedTurn;
 	public bool canMove;
-	public transform destiny;
+	public Vector2 target;
+	public Transform origin;
+	public Transform signal;
+	//public transform destiny;
 	// Use this for initialization
-	void Start () {
+	private void Start () {
 		canMove = true;
-		
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		if (canMove)
-			transform.Translate(new Vector3(-1f * Time.deltaTime * speed,0f,0f));
+	private void FixedUpdate () {
+		if (canMove){
+			transform.position = Vector3.MoveTowards(transform.position, target, speed);
+			//lookat2d
+		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
+	private void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.CompareTag("Signal"))
-        	canMove = false;
+			VerifyColor();
 		if(other.gameObject.CompareTag("Car"))
         	canMove = false;
+		if(other.gameObject.CompareTag("Out"))
+			Destroy(this.gameObject);
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-		if(other.gameObject.CompareTag("Signal"))
-        	canMove = true;
+	private void OnTriggerExit2D(Collider2D other) {
 		if(other.gameObject.CompareTag("Car"))
         	canMove = true;
     }
+
+	private void OnTriggerStay2D(Collider2D other){
+		if(other.gameObject.CompareTag("Signal"))
+			VerifyColor();
+	}
+
+
+	private void VerifyColor(){
+		if(signal.GetComponent<SpriteRenderer>().color == new Color (255,0,0)){
+			canMove = false;
+		}else if(signal.GetComponent<SpriteRenderer>().color == new Color (0,255,0)){
+			canMove = true;
+		}
+	}
 
 }
