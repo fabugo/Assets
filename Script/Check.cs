@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Out : MonoBehaviour {
-
+public class Check : MonoBehaviour {
+	public Transform next;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,10 +13,10 @@ public class Out : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter2D(Collider2D other){
+	void OnTriggerEnter2D (Collider2D other) {
 		if(other.gameObject.CompareTag("Car")){
-			Transform originCar = other.GetComponent<Car>().origin;
-			originCar.GetComponent<In>().UnderCountCar();
+			if(Random.Range(0,2) == 1)
+				other.GetComponent<Car>().fate = next.transform;
 		}
 	}
 }
