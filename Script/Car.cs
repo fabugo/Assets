@@ -31,16 +31,24 @@ public class Car : MonoBehaviour {
         	canMove = false;
 		if(other.gameObject.CompareTag("Out"))
 			Destroy(this.gameObject);
+		if(other.gameObject.CompareTag("redLight"))
+			canMove = false;
+		if (other.gameObject.CompareTag("yellowLight"))
+			canMove = false;
     }
 
 	private void OnTriggerExit2D(Collider2D other) {
-		if(other.gameObject.CompareTag("Car"))
-        	canMove = true;
+//		if(other.gameObject.CompareTag("Car"))
+//       	canMove = true;
     }
 
 	private void OnTriggerStay2D(Collider2D other){
 		if(other.gameObject.CompareTag("Signal"))
 			VerifyColor(other);
+		if (other.gameObject.CompareTag("greenLight"))
+			canMove = true;
+
+
 	}
 
 	private void VerifyColor(Collider2D other){
