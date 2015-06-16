@@ -39,8 +39,8 @@ public class Car : MonoBehaviour {
     }
 
 	private void OnTriggerExit2D(Collider2D other) {
-//		if(other.gameObject.CompareTag("Car"))
-//       	canMove = true;
+		if(other.gameObject.CompareTag("Car"))
+       	canMove = true;
     }
 
 	private void OnTriggerStay2D(Collider2D other){
@@ -48,8 +48,6 @@ public class Car : MonoBehaviour {
 			VerifyColor(other);
 		if (other.gameObject.CompareTag("greenLight"))
 			canMove = true;
-
-
 	}
 
 	private void VerifyColor(Collider2D other){

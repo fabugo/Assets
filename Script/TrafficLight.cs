@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TrafficLight : MonoBehaviour {
@@ -9,8 +9,12 @@ public class TrafficLight : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timer = initialValue;
-		stats = 0;
-		gameObject.tag = "greenLight";
+		if (stats == 0)
+			gameObject.tag = "greenLight";
+		if (stats == 1)
+			gameObject.tag = "yellowLight";
+		if (stats == 2)
+			gameObject.tag = "redLight";
 	
 	}
 	
