@@ -15,7 +15,8 @@ public class Check : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if(other.gameObject.CompareTag("Car")){
-			if(Random.Range(0,2) == 1)
+		int random = Random.Range(0,5);
+			if(random == 1)
 				other.GetComponent<Car>().fate = next.transform;
 		}
 	}

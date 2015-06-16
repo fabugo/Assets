@@ -16,6 +16,7 @@ public class Car : MonoBehaviour {
 			float AngleRad = Mathf.Atan2(fate.position.x - transform.position.x , fate.position.y - transform.position.y);
 			float AngleDeg = (180 / Mathf.PI) * AngleRad;
 			this.transform.rotation = Quaternion.Euler(0, 0, -AngleDeg);
+
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, fate.position);
 			if(hit.distance > 0)
 				Debug.Log(hit.distance);
