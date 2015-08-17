@@ -18,9 +18,9 @@ public class Car : MonoBehaviour {
 			this.transform.rotation = Quaternion.Euler(0, 0, -AngleDeg);
 
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, fate.position);
-			if(hit.distance > 0)
+			if(hit.distance != 0)
 				Debug.Log(hit.distance);
-			Debug.DrawRay(transform.position,fate.position);
+			Debug.DrawRay(transform.position,fate.localPosition);
 		}
 
 	}
